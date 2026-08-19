@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Splash screen Kasir Dapur — background brand hijau + icon centered -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background warna brand -->
+    <item android:drawable="@color/kd_primary" />
+
+    <!-- Icon centered -->
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/launch_icon" />
+    </item>
+</layer-list>

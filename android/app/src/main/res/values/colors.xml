@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand colors Kasir Dapur -->
+    <color name="kd_primary">#1F6B4A</color>
+    <color name="kd_primary_dark">#174F38</color>
+    <color name="kd_surface_light">#FAFAF8</color>
+    <color name="kd_surface_dark">#121212</color>
+	<color name="ic_launcher_background">#1F6B4A</color>
+</resources>

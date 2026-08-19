@@ -1,0 +1,5 @@
+# Secret. Jangan commit Server Key Midtrans atau kredensial lain.
+.env
+*.log
+.dart_tool/
+build/

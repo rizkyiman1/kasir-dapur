@@ -1,0 +1,49 @@
+# systemd unit — Kasir Dapur Backend (single instance MVP)
+# Install:
+#   sudo cp deploy/dapur-kasir-backend.service.example /etc/systemd/system/dapur-kasir-backend.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now dapur-kasir-backend
+#
+# Secrets: /etc/dapur-kasir/backend.env (chmod 600, NOT in git)
+
+[Unit]
+Description=Kasir Dapur Backend API (Dart/Shelf)
+Documentation=file:///opt/dapur-kasir/backend/DEPLOYMENT_REQUIREMENTS.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=dapur-kasir
+Group=dapur-kasir
+WorkingDirectory=/opt/dapur-kasir/backend
+
+# Environment file on server — contains secrets; never commit
+EnvironmentFile=-/etc/dapur-kasir/backend.env
+
+ExecStart=/opt/dapur-kasir/bin/kasir-dapur-backend
+
+# Graceful shutdown (SIGINT handled in bin/server.dart)
+KillSignal=SIGINT
+TimeoutStopSec=30
+
+Restart=on-failure
+RestartSec=5
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/dapur-kasir /opt/dapur-kasir/var
+AmbientCapabilities=
+
+# Logs → journald (do not log secrets in app)
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=dapur-kasir-backend
+
+[Install]
+WantedBy=multi-user.target

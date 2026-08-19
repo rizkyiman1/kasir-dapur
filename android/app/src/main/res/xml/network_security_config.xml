@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Network Security Config — Kasir Dapur
+    Hanya HTTPS yang diizinkan. Tidak ada cleartext traffic ke produksi.
+    Backend: https://dapur-rasa.com
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <!-- Percaya hanya pada CA system default (tidak ada user CA) -->
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

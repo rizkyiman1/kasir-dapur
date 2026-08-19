@@ -1,0 +1,26 @@
+# key.properties.example — Kasir Dapur Release Signing
+#
+# PETUNJUK:
+# 1. Salin file ini menjadi "key.properties" di folder android/
+#    (cp key.properties.example key.properties)
+# 2. Isi nilai di bawah sesuai keystore Anda.
+# 3. JANGAN commit key.properties ke repository — sudah ada di .gitignore.
+# 4. Simpan keystore dan key.properties di tempat aman (password manager,
+#    Google Drive ter-enkripsi, atau CI/CD secrets).
+#
+# Untuk membuat keystore baru:
+#   keytool -genkey -v \
+#     -keystore upload-keystore.jks \
+#     -storetype JKS \
+#     -keyalg RSA \
+#     -keysize 2048 \
+#     -validity 10000 \
+#     -alias upload \
+#     -dname "CN=Kasir Dapur, OU=Mobile, O=PT Dapur Rasa Karya Nusantara, L=Jakarta, ST=DKI Jakarta, C=ID"
+#
+# Lihat SIGNING.md untuk panduan lengkap.
+
+storePassword=GANTI_DENGAN_STORE_PASSWORD
+keyPassword=GANTI_DENGAN_KEY_PASSWORD
+keyAlias=upload
+storeFile=../upload-keystore.jks

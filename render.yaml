@@ -1,0 +1,44 @@
+services:
+  - type: web
+    name: kasir-dapur-backend-staging
+    runtime: docker
+    plan: starter
+    region: singapore
+    numInstances: 1
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    disk:
+      name: billing-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: BILLING_SQLITE_PATH
+        value: /data/billing.db
+      - key: ENFORCE_PRODUCTION_SECRETS
+        value: "true"
+      - key: TRUST_PROXY_HEADERS
+        value: "false"
+      - key: MIDTRANS_ENVIRONMENT
+        value: SANDBOX
+      - key: MIDTRANS_IS_PRODUCTION
+        value: "false"
+      - key: PLAN_PRICE_PRO_MONTHLY
+        value: "49000"
+      - key: PLAN_PRICE_PRO_YEARLY
+        value: "490000"
+      - key: PLAN_PRICE_BUSINESS_MONTHLY
+        value: "99000"
+      - key: PLAN_PRICE_BUSINESS_YEARLY
+        value: "990000"
+      - key: PLAN_GRACE_DAYS
+        value: "7"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PUBLIC_BASE_URL
+        sync: false
+      - key: MIDTRANS_SERVER_KEY
+        sync: false
+      - key: MIDTRANS_CLIENT_KEY
+        sync: false
+      - key: MIDTRANS_MERCHANT_ID
+        sync: false

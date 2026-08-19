@@ -1,0 +1,31 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
+    - backend/**
+    - tool/**
+  errors:
+    invalid_use_of_visible_for_testing_member: error
+    prefer_initializing_formals: ignore
+    directives_ordering: ignore
+    sort_child_properties_last: ignore
+    dangling_library_doc_comments: ignore
+    deprecated_member_use: ignore
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    avoid_print: true
+    unawaited_futures: true
+    cancel_subscriptions: true
+    close_sinks: true
+    directives_ordering: true
+    sort_child_properties_last: true
+    use_key_in_widget_constructors: true

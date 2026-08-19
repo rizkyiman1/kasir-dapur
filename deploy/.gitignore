@@ -1,0 +1,8 @@
+# Build artifacts — do not commit
+build/
+*.exe
+
+# Local env copies
+.env
+backend.env
+*.env.local

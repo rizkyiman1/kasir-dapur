@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="kd_primary">#174F38</color>
+    <color name="kd_primary_dark">#0F3325</color>
+    <color name="kd_surface_light">#121212</color>
+    <color name="kd_surface_dark">#0A0A0A</color>
+</resources>
