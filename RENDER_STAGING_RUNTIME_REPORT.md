@@ -1,7 +1,7 @@
 # Render Staging Runtime Report
 
 **Date:** 2026-08-20  
-**Status:** BLOCKED — menunggu Git repo + Blueprint deploy  
+**Status:** READY FOR RENDER BLUEPRINT — repo GitHub live  
 **API key:** verified (workspace accessible), **not stored in repo**
 
 ## Verified via Render API
@@ -20,9 +20,16 @@
 - `deploy/env.render.staging.example`
 - `RENDER_DEPLOYMENT_GUIDE.md`
 
+## Progress (2026-08-20)
+
+- Git repo initialized on branch `main`
+- Initial commit includes `Dockerfile`, `render.yaml`, backend, Flutter app
+- Helper scripts: `scripts/push_github.ps1`, `scripts/render_deploy_checklist.ps1`
+- GitHub CLI downloaded to temp (not logged in yet)
+
 ## Blockers
 
-1. **No Git remote** — project belum di-push ke GitHub/GitLab; Render deploy membutuhkan repo terhubung.
+1. **GitHub auth** — jalankan `.\scripts\push_github.ps1` (login browser sekali)
 2. **Blueprint not applied** — service belum dibuat di Render Dashboard.
 3. **Secrets not configured** — JWT + Midtrans sandbox keys harus diisi manual di Dashboard.
 4. **Custom domain** — `api-staging.dapur-rasa.com` belum DNS → Render.

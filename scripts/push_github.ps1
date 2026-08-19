@@ -15,8 +15,13 @@ function Get-GhExe {
 $gh = Get-GhExe
 Write-Host "Using GitHub CLI: $gh" -ForegroundColor Cyan
 
-$auth = & $gh auth status 2>&1
-if ($LASTEXITCODE -ne 0) {
+$prevEap = $ErrorActionPreference
+$ErrorActionPreference = "SilentlyContinue"
+& $gh auth status 2>&1 | Out-Null
+$needsLogin = ($LASTEXITCODE -ne 0)
+$ErrorActionPreference = $prevEap
+
+if ($needsLogin) {
     Write-Host ""
     Write-Host "Login GitHub dulu (browser akan terbuka):" -ForegroundColor Yellow
     & $gh auth login -h github.com -p https -w
@@ -24,11 +29,11 @@ if ($LASTEXITCODE -ne 0) {
 
 $repoName = "kasir-dapur"
 Write-Host ""
-Write-Host "Creating private GitHub repo '$repoName' (skip if already exists)..." -ForegroundColor Cyan
+Write-Host "Creating private GitHub repo $repoName (skip if already exists)..." -ForegroundColor Cyan
 & $gh repo create $repoName --private --source=. --remote=origin --push 2>&1
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "Repo mungkin sudah ada — coba push manual:" -ForegroundColor Yellow
-    Write-Host "  git remote add origin https://github.com/<username>/$repoName.git"
+    Write-Host "Repo mungkin sudah ada - coba push manual:" -ForegroundColor Yellow
+    Write-Host ('  git remote add origin https://github.com/USERNAME/' + $repoName + '.git')
     Write-Host "  git push -u origin main"
     exit 1
 }
